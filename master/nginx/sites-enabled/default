@@ -1,0 +1,34 @@
+server {
+    listen       80;
+    server_name  _;
+    root         /var/www/html;
+
+    location / {
+      proxy_pass http://localhost:8081; # Change the port as needed
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_set_header Host $host;
+      proxy_cache_bypass $http_upgrade;
+    }
+
+    #PHPINFO
+    location ~ \.php$ {
+      include snippets/fastcgi-php.conf;
+      fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    }
+
+    location = /phpinfo-node1.php {
+      proxy_pass http://192.168.64.4/info.php;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      }
+
+    location /server2-postgres-tables {
+      proxy_pass http://192.168.64.4:80/query-postgres;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      }
+}
