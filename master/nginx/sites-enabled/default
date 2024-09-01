@@ -18,7 +18,7 @@ server {
       fastcgi_pass unix:/run/php/php8.2-fpm.sock;
     }
 
-    location = /phpinfo-node1.php {
+    location = /info-node1.php {
       proxy_pass http://192.168.64.4/info.php;
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;

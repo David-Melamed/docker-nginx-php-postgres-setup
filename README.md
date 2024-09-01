@@ -1,5 +1,3 @@
-# Unified Server Installer
-
 This project provides automation scripts and configurations for setting up a multi-node server environment with Docker, Nginx, PHP, PostgreSQL, and Redis.
 
 ## Table of Contents
@@ -14,9 +12,6 @@ This project provides automation scripts and configurations for setting up a mul
   - [Node Instance](#node-instance)
 - [Nginx Deployment](#nginx-deployment)
 - [Connectivity Tests](#connectivity-tests)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Prerequisites
 
@@ -113,7 +108,7 @@ When prompted, use these default versions or specify your own:
 ## Connectivity Tests
 
 1. **Docker connectivity between master and node instances**
-   - Access `http://<MASTER-IP>/info-node.php` to display PHP info from the node instance's Docker container
+   - Access `http://<MASTER-IP>/info-node1.php` to display PHP info from the node instance's Docker container
 
 2. **PostgreSQL on the node instance**
    - Send requests from the master instance to the PostgreSQL container on the node instance:
@@ -121,17 +116,3 @@ When prompted, use these default versions or specify your own:
      http://<MASTER-IP>/query-postgres
      ```
    - This should list all databases in the node instance's PostgreSQL container
-
-## Troubleshooting
-
-- If you encounter permission issues, ensure you're using `sudo` for commands that require elevated privileges.
-- Check firewall settings if you're having connectivity issues between instances.
-- Verify that all services are running with `sudo systemctl status <service-name>`.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
