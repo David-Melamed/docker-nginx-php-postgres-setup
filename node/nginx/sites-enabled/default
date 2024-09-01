@@ -1,0 +1,31 @@
+server {
+    listen       80;
+    server_name  _;
+    root         /var/www/html;
+
+    location / {
+      proxy_pass http://localhost:8081; # Change the port as needed
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_set_header Host $host;
+      proxy_cache_bypass $http_upgrade;
+    }
+
+    #PHPINFO 
+    location ~ \.php$ {
+      include snippets/fastcgi-php.conf;
+      fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    }
+
+    location /query-postgres {
+        include fastcgi_params;
+        fastcgi_pass unix:/var/run/fcgiwrap.socket;
+        fastcgi_param SCRIPT_FILENAME /home/ubuntu/db_queries/list-db.sh;
+        fastcgi_param SCRIPT_NAME /list-db.sh;
+        fastcgi_param DOCUMENT_ROOT /home/ubuntu/db_queries;
+        
+        error_log /var/log/nginx/fastcgi_error.log debug;
+        fastcgi_intercept_errors on;
+  }
+}
