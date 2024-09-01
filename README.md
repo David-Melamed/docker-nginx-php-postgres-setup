@@ -59,6 +59,13 @@ When prompted, use these default versions or specify your own:
 - **PostgreSQL**: 14.13
 - **Redis**: 7.2.5
 
+## Create the directory and the PHP file:
+Run the following command to create the necessary directory and add the info.php file with the phpinfo() function:
+
+   ```bash
+   sudo mkdir -p /var/www/html && sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/info.php"
+   ```
+
 ## Docker Setup
 
 ### Master Instance

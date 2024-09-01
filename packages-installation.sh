@@ -113,13 +113,14 @@ check_success "Docker installation"
 
 # Nginx installation
 log "Installing Nginx"
-download_and_extract "https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz"
-./configure --without-http_gzip_module >> "$LOGFILE"
-log_verbose "Nginx configured"
-make >> "$LOGFILE"
-log_verbose "Nginx compiled"
-sudo make install >> "$LOGFILE"
-log_verbose "Nginx installed"
+sudo apt install nginx -y >> "$LOGFILE"
+# download_and_extract "https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz"
+# ./configure >> "$LOGFILE"
+# log_verbose "Nginx configured"
+# make >> "$LOGFILE"
+# log_verbose "Nginx compiled"
+# sudo make install >> "$LOGFILE"
+# log_verbose "Nginx installed"
 check_success "Nginx installation"
 
 # PHP installation
