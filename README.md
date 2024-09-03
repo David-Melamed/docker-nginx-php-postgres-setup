@@ -70,7 +70,10 @@ Run the following command to create the necessary directory and add the info.php
 
 ### Master Instance
 
-1. Ensure `Dockerfile` and `index.html` are in the same directory.
+1. Copy the files to the master instance:
+   ```bash
+   scp -r master/Docker/* user@master-instance-ip:~/
+   ```
 2. Build the Docker image:
    ```bash
    sudo docker build -t my-nginx-site .
@@ -82,9 +85,9 @@ Run the following command to create the necessary directory and add the info.php
 
 ### Node Instance
 
-1. Copy the Dockerfile to the node instance:
+1. Copy the files to the node instance:
    ```bash
-   scp Dockerfile user@node-instance-ip:~/
+   scp -r node/Docker/* user@node-instance-ip:~/
    ```
 2. Build the Docker image:
    ```bash
