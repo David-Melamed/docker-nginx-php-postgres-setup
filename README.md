@@ -139,6 +139,6 @@ Run the following command to create the necessary directory and add the info.php
 2. **PostgreSQL on the node instance**
    - Send requests from the master instance to the PostgreSQL container on the node instance:
      ```
-     http://<MASTER-IP>/query-postgres
+     http://<MASTER-IP>/server2-postgres-tables
      ```
    - This should list all databases in the node instance's PostgreSQL container
