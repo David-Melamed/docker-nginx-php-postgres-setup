@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# main.sh - Simplified Server Setup Script
+# main.sh
 
 set -e
 
