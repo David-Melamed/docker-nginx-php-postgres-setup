@@ -47,17 +47,33 @@ Clone this repository and run the `packages-installation.sh` script on both inst
 git clone https://github.com/David-Melamed/docker-nginx-php-postgres-setup.git
 cd docker-nginx-php-postgres-setup
 chmod +x packages-installation.sh
-sudo ./packages-installation.sh
 ```
 
-When prompted, use these default versions or specify your own:
+Before running the installation script, make sure to review and update the versions.conf file in the package-installation
+directory to specify the desired versions for each package. If no version is specified, the latest version will be used.
 
-- **instance-type**: master (for master-instance) or node (for node-instance)
-- **Docker**: 27.2.0
-- **Nginx**: 1.18.0
-- **PHP**: 4.2.22
-- **PostgreSQL**: 14.13
-- **Redis**: 7.2.5
+
+To start the installation process, run the main.sh script:
+```bash
+chmod +x main.sh
+sudo ./main.sh
+```
+
+During the installation process, you will be prompted to:
+
+1. Specify whether the current instance is a master or node server.
+2. Choose between installing all packages or performing a custom installation.
+   * If you select "all", all packages will be installed with their default versions specified in versions.conf.
+   * If you select "custom", you will be prompted to choose which packages to install and optionally provide custom versions for each package.
+
+
+Note: The package-installation directory contains the following subdirectories:
+
+downloads/: Stores downloaded package files during the installation process.
+logs/: Stores log files generated during the server setup and package installation.
+temp/: Stores temporary files used during the package installation process.
+scripts/: Contains individual package installation scripts.
+
 
 ## Create the directory and the PHP file:
 Run the following command to create the necessary directory and add the info.php file with the phpinfo() function:
